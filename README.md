@@ -48,7 +48,7 @@ VehicleServiceReminder/
 1. Clone the repository:
 
 ```bash
-git clone <your-repository-link>
+git clone https://github.com/Jaggu1020/VehicleServiceReminder
 cd VehicleServiceReminder
 ```
 
@@ -81,9 +81,6 @@ http://127.0.0.1:5000
 - `vehicles` — stores vehicle and owner details.
 - `service_records` — stores completed service details and future due dates.
 
-## Resume Description
-
-Developed a Vehicle Service Reminder and Maintenance Management System using Python Flask and MySQL. The application manages vehicle records, tracks service history, identifies due-soon and overdue maintenance, and supports safety-related vehicle inspections.
 
 ## Future Enhancements
 
