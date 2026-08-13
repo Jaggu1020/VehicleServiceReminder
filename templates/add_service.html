@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Add Service Record | VehicleCare{% endblock %}
+
+{% block content %}
+
+<section class="page-heading">
+    <div>
+        <p class="small-heading dark-heading">MAINTENANCE TRACKING</p>
+        <h1 class="dark-title">Add Service Record</h1>
+        <p class="description dark-description">
+            Record maintenance details and set the next service reminder.
+        </p>
+    </div>
+
+    <a href="/vehicles" class="back-link">← View Vehicles</a>
+</section>
+
+<section class="form-card">
+    <form action="/add-service" method="post">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label for="vehicle">Select Vehicle</label>
+
+                <select id="vehicle" name="vehicle_id" required>
+                    <option value="">Choose a vehicle</option>
+
+                    {% for vehicle in vehicles %}
+                    <option value="{{ vehicle.id }}">
+                        {{ vehicle.registration_number }} - {{ vehicle.vehicle_model }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="service_type">Service Type</label>
+
+                <select id="service_type" name="service_type" required>
+                    <option value="">Choose service type</option>
+                    <option value="Engine Oil Change">Engine Oil Change</option>
+                    <option value="Tyre Inspection">Tyre Inspection</option>
+                    <option value="Brake Inspection">Brake Inspection</option>
+                    <option value="Battery Check">Battery Check</option>
+                    <option value="Seat-Belt Inspection">Seat-Belt Inspection</option>
+                    <option value="Airbag Warning-Light Check">
+                        Airbag Warning-Light Check
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="last_service_date">Service Date</label>
+                <input type="date" id="last_service_date"
+                       name="last_service_date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="next_due_date">Next Due Date</label>
+                <input type="date" id="next_due_date"
+                       name="next_due_date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="next_due_km">Next Due Kilometres</label>
+                <input type="number" id="next_due_km"
+                       name="next_due_km"
+                       placeholder="Example: 30000"
+                       min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="notes">Notes</label>
+                <input type="text" id="notes" name="notes"
+                       placeholder="Optional service notes">
+            </div>
+
+        </div>
+
+        <div class="form-actions">
+            <button type="reset" class="cancel-button">Clear</button>
+            <button type="submit" class="save-button">
+                Save Service Record
+            </button>
+        </div>
+
+    </form>
+</section>
+
+{% endblock %}

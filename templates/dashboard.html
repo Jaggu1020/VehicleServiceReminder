@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard | VehicleCare{% endblock %}
+
+{% block content %}
+
+<section class="welcome-section">
+    <div>
+        <p class="small-heading">VEHICLE MAINTENANCE MANAGEMENT</p>
+
+        <h1>Keep every vehicle safe and service-ready.</h1>
+
+        <p class="description">
+            Track vehicle maintenance, safety inspections, and service reminders in one place.
+        </p>
+    </div>
+
+    <a href="/add-vehicle" class="add-button">+ Add Vehicle</a>
+</section>
+
+<section class="card-section">
+    <div class="dashboard-card blue-card">
+        <p>Total Vehicles</p>
+        <h2>{{ total_vehicles }}</h2>
+        <span>Vehicles registered</span>
+    </div>
+
+    <div class="dashboard-card yellow-card">
+        <p>Due Soon</p>
+        <h2>{{ due_soon }}</h2>
+        <span>Due within 7 days</span>
+    </div>
+
+    <div class="dashboard-card red-card">
+        <p>Overdue</p>
+        <h2>{{ overdue }}</h2>
+        <span>Needs attention</span>
+    </div>
+</section>
+
+<section class="reminder-section">
+    <h2>Upcoming Service Reminders</h2>
+
+    <p>Your next scheduled service details will appear here.</p>
+
+    <div class="empty-message">
+        <h3>No reminders yet</h3>
+
+        <p>
+            Add a vehicle and service details to start tracking maintenance.
+        </p>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Reminders | VehicleCare{% endblock %}
+
+{% block content %}
+
+<section class="page-heading">
+    <div>
+        <p class="small-heading dark-heading">SERVICE ALERTS</p>
+        <h1 class="dark-title">Maintenance Reminders</h1>
+        <p class="description dark-description">
+            Prioritise vehicles that need maintenance or safety inspection.
+        </p>
+    </div>
+</section>
+
+<section class="reminder-summary">
+    <div class="summary-box total-reminders">
+        <span>Total Reminders</span>
+        <h2>{{ reminders|length }}</h2>
+    </div>
+
+    <div class="summary-box due-reminders">
+        <span>Due Soon</span>
+        <h2>Check list below</h2>
+    </div>
+
+    <div class="summary-box overdue-reminders">
+        <span>Overdue</span>
+        <h2>Check list below</h2>
+    </div>
+</section>
+
+<section class="table-card">
+    <div class="table-top">
+        <h2>Pending Service Tasks</h2>
+        <span class="table-note">Update the service record after completion.</span>
+    </div>
+
+    <div class="reminder-list">
+
+        {% for reminder in reminders %}
+        <article class="reminder-item
+            {% if reminder.next_due_date < today %}
+                overdue-border
+            {% else %}
+                due-border
+            {% endif %}
+        ">
+            <div>
+                {% if reminder.next_due_date < today %}
+                    <span class="status overdue">Overdue</span>
+                {% else %}
+                    <span class="status soon">Due Soon</span>
+                {% endif %}
+
+                <h3>{{ reminder.service_type }}</h3>
+
+                <p>
+                    {{ reminder.registration_number }} · {{ reminder.vehicle_model }}
+                </p>
+            </div>
+
+            <div class="reminder-date">
+                <span>Due Date</span>
+                <strong>{{ reminder.next_due_date }}</strong>
+            </div>
+        </article>
+
+        {% else %}
+        <div class="empty-message">
+            <h3>No pending reminders</h3>
+            <p>All vehicle service schedules are currently up to date.</p>
+        </div>
+        {% endfor %}
+
+    </div>
+</section>
+
+{% endblock %}

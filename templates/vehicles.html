@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Vehicles | VehicleCare{% endblock %}
+
+{% block content %}
+
+<section class="page-heading">
+    <div>
+        <p class="small-heading dark-heading">VEHICLE DIRECTORY</p>
+        <h1 class="dark-title">Registered Vehicles</h1>
+        <p class="description dark-description">
+            View all vehicles and their latest maintenance status.
+        </p>
+    </div>
+
+    <a href="/add-vehicle" class="add-button">+ Add Vehicle</a>
+</section>
+
+<section class="table-card">
+    <div class="table-top">
+        <h2>Vehicle List</h2>
+        <input type="text" placeholder="Search by registration number">
+    </div>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Registration No.</th>
+                    <th>Owner Name</th>
+                    <th>Vehicle Model</th>
+                    <th>Current KM</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+      <tbody>
+    {% for vehicle in vehicles %}
+    <tr>
+        <td>{{ vehicle.registration_number }}</td>
+        <td>{{ vehicle.owner_name }}</td>
+        <td>{{ vehicle.vehicle_model }}</td>
+        <td>{{ vehicle.current_km }} km</td>
+        <td><span class="status safe">Registered</span></td>
+
+<td>
+    <form action="/delete-vehicle/{{ vehicle.id }}" method="post"
+          onsubmit="return confirm('Delete this vehicle and its service records?');">
+        <button type="submit" class="delete-button">Delete</button>
+    </form>
+</td>
+
+    </tr>
+
+    {% else %}
+    <tr>
+        <td colspan="5">No vehicles have been added yet.</td>
+    </tr>
+    {% endfor %}
+</tbody>
+        </table>
+    </div>
+</section>
+
+{% endblock %}

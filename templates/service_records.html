@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Service Records | VehicleCare{% endblock %}
+
+{% block content %}
+
+<section class="page-heading">
+    <div>
+        <p class="small-heading dark-heading">MAINTENANCE HISTORY</p>
+        <h1 class="dark-title">Service Records</h1>
+        <p class="description dark-description">
+            View completed vehicle maintenance and safety inspection records.
+        </p>
+    </div>
+
+    <a href="/add-service" class="add-button">+ Add Service Record</a>
+</section>
+
+<section class="table-card">
+    <div class="table-top">
+        <h2>Service History</h2>
+        <input type="text" placeholder="Search by vehicle number">
+    </div>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Vehicle Number</th>
+                    <th>Service Type</th>
+                    <th>Service Date</th>
+                    <th>Next Due Date</th>
+                    <th>Next Due KM</th>
+                </tr>
+            </thead>
+
+            <tbody>
+    {% for record in records %}
+    <tr>
+        <td>{{ record.registration_number }}</td>
+        <td>{{ record.service_type }}</td>
+        <td>{{ record.last_service_date }}</td>
+        <td>{{ record.next_due_date }}</td>
+        <td>{{ record.next_due_km }} km</td>
+    </tr>
+
+    {% else %}
+    <tr>
+        <td colspan="5">No service records have been added yet.</td>
+    </tr>
+    {% endfor %}
+</tbody>
+        </table>
+    </div>
+</section>
+
+{% endblock %}

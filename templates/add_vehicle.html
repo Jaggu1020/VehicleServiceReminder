@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Add Vehicle | VehicleCare{% endblock %}
+
+{% block content %}
+
+<section class="page-heading">
+    <div>
+        <p class="small-heading dark-heading">VEHICLE REGISTRATION</p>
+        <h1 class="dark-title">Add a New Vehicle</h1>
+        <p class="description dark-description">
+            Save the vehicle details to start tracking service and safety reminders.
+        </p>
+    </div>
+
+    <a href="/" class="back-link">← Back to Dashboard</a>
+</section>
+
+<section class="form-card">
+   <form action="/add-vehicle" method="post">
+
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="owner_name">Owner Name</label>
+                <input type="text" id="owner_name" name="owner_name"
+                       placeholder="Enter owner name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="registration_number">Registration Number</label>
+                <input type="text" id="registration_number"
+                       name="registration_number"
+                       placeholder="Example: KA 01 AB 1234" required>
+            </div>
+
+            <div class="form-group">
+                <label for="vehicle_model">Vehicle Model</label>
+                <input type="text" id="vehicle_model" name="vehicle_model"
+                       placeholder="Example: Tata Nexon" required>
+            </div>
+
+            <div class="form-group">
+                <label for="current_km">Current Kilometres</label>
+                <input type="number" id="current_km" name="current_km"
+                       placeholder="Example: 25000" min="0" required>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="reset" class="cancel-button">Clear</button>
+            <button type="submit" class="save-button">Save Vehicle</button>
+        </div>
+
+    </form>
+</section>
+
+{% endblock %}
